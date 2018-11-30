@@ -12,7 +12,7 @@ namespace TeduShop.Web.Controllers
         {
             return View();
 
-			//ssss
+			//sssssss
         }
 
         public ActionResult About()
