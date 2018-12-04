@@ -13,10 +13,10 @@ namespace TeduShop.Data.Repositories
 	public interface IPostCategoryRepository : IRepository<PostCategory>
 	{
 
-		IEnumerable<PostCategory> GetByAlias(string alias);
+	//	IEnumerable<PostCategory> GetByAlias(string alias);
 
 	}
-	public	class PostCategoryRepository : RepositoryBase<PostCategory>
+	public	class PostCategoryRepository : RepositoryBase<PostCategory>,IPostCategoryRepository
 	{
 		public PostCategoryRepository(IDbFactory dbFactory) : base(dbFactory)
 		{

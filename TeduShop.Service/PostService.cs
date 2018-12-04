@@ -19,6 +19,7 @@ namespace TeduShop.Service
 		IEnumerable<Post> GetAllPaging(int Page, int PageSize, out int totalRow);
 		Post GetById(int id);
 		IEnumerable<Post> GetAllByTagPaging(string Tag, int Page, int PageSize, out int totalRow);
+		IEnumerable<Post> GetAllByTagCategoryPaging(int CategoryId, string Tag, int Page, int PageSize, out int totalRow);
 		void SaveChange();
 
 
@@ -55,10 +56,14 @@ namespace TeduShop.Service
 			return _postRepository.GetAll(new string[] {"PostCategory"});
 		}
 
+		public IEnumerable<Post> GetAllByTagCategoryPaging(int CategoryId, string Tag, int Page, int PageSize, out int totalRow)
+		{
+			return _postRepository.GetMultiPaging(x=>x.Status && x.CategoryID==CategoryId, out totalRow, Page,PageSize, new string[] { "PostCategory" });
+		}
 
 		public IEnumerable<Post> GetAllByTagPaging(string Tag, int Page, int PageSize, out int totalRow)
 		{
-			return _postRepository.GetMultiPaging(x=>x.Status,out totalRow, Page,PageSize);
+			return _postRepository.GetAllByTagPaging(Tag, Page,PageSize, out totalRow);
 		}
 
 		public IEnumerable<Post> GetAllPaging(int Page, int PageSize, out int totalRow)
